@@ -12,8 +12,8 @@ function PopupWithForm({
          <div className="popup__container">
             <h2 className="popup__text">{title}</h2>
             <form
-               className={"popup__form-${name}"}
-               name={"popup__form - ${name}"}
+               className={`popup__form-${name}`}
+               name={`popup__form - ${name}`}
             >
                {children}
                <button
@@ -26,8 +26,7 @@ function PopupWithForm({
                className="popup__close"
                onClick={onClose}
                type="button"
-            >
-            </button>
+            />
          </div>
       </div>
    );

@@ -132,19 +132,6 @@ function App() {
         />
         <Footer />
       </div>
-      <template id="elements-template">
-        <li className="elements__card">
-          <img className="elements__image" />
-          <div className="elements__info">
-            <h2 className="elements__name"></h2>
-            <div className="elements__btn">
-              <button className="elements__like" type="button"></button>
-              <div className="elements__like-sum">0</div>
-            </div>
-          </div>
-          <button className="elements__del" type="button"></button>
-        </li>
-      </template>
     </div>
   );
 }
