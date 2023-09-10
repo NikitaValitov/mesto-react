@@ -12,6 +12,3 @@
 Используя декларативный подход реализовал отрытие и закрытие попапов.
 
 Подлкючил API.
-
-### Сайт:
-[https://nikitavalitov.github.io/mesto/](https://nikitavalitov.github.io/mesto/)
