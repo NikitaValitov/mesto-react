@@ -49,6 +49,7 @@ function AddPlacePopup({
             minLength="2"
             maxLength="30"
             onChange={handleNameChange}
+            value={name}
          />
          <span id="name-error" className="error"></span>
          <input
@@ -58,6 +59,7 @@ function AddPlacePopup({
             type="url"
             required
             onChange={handleLinkChange}
+            value={link}
          />
          <span id="link-error" className="error"></span>
       </PopupWithForm>

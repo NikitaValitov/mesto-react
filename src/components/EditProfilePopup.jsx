@@ -15,7 +15,7 @@ function EditFrofilePopup({
   React.useEffect(() => {
     setName(currentUser.name);
     setDescription(currentUser.about);
-  }, [currentUser]);
+  }, [currentUser, isOpen]);
 
   function hadleChangeName(e) {
     setName(e.target.value);
