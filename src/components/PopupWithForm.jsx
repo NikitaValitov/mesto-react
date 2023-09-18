@@ -4,7 +4,8 @@ function PopupWithForm({
    children,
    buttonText,
    isOpen,
-   onClose
+   onClose,
+   onSubmit
 }) {
 
    return (
@@ -14,6 +15,7 @@ function PopupWithForm({
             <form
                className={`popup__form-${name}`}
                name={`popup__form - ${name}`}
+               onSubmit={onSubmit}
             >
                {children}
                <button

@@ -1,30 +1,18 @@
-import React, { useState, useEffect } from "react";
-import api from "../utils/Api";
+import React, { useContext } from "react";
 import Card from "./Card";
+import CurrentUserContext from "../contexts/CurrentUserContext.js"
 
 function Main({
   onEditProfile,
   onAddPlace,
   onEditAvatar,
-  onCardClick
+  onCardClick,
+  onCardLike,
+  onCardDelete,
+  cards
 }) {
-  const [userName, setUserName] = useState("");
-  const [userDescription, setUserDescription] = useState("");
-  const [userAvatar, setUserAvatar] = useState("");
-  const [cards, setCards] = useState([]);
 
-  useEffect(() => {
-    Promise.all([api.getInfo(), api.getInitialCards()])
-      .then(([data, cards]) => {
-        setUserName(data.name);
-        setUserDescription(data.about);
-        setUserAvatar(data.avatar);
-        setCards(cards);
-      })
-      .catch((err) => {
-        console.log('Ошибка при получении данных юзера и карточек: ', err);
-      })
-  }, [])
+  const currentUser = useContext(CurrentUserContext);
 
   return (
     <main className="main">
@@ -35,16 +23,16 @@ function Main({
               className="profile__button-avatar"
               onClick={onEditAvatar}
             ></button>
-            <img src={userAvatar} alt="аватар" className="profile__avatar" />
+            <img src={currentUser.avatar} alt="аватар" className="profile__avatar" />
           </div>
           <div className="profile__info">
-            <h1 className="profile__name">{userName}</h1>
+            <h1 className="profile__name">{currentUser.name}</h1>
             <button
               className="profile__edit-button"
               type="button"
               onClick={onEditProfile}
             ></button>
-            <p className="profile__activity">{userDescription}</p>
+            <p className="profile__activity">{currentUser.about}</p>
           </div>
         </div>
         <button
@@ -59,6 +47,8 @@ function Main({
             <Card
               card={card}
               onCardClick={onCardClick}
+              onCardLike={onCardLike}
+              onCardDelete={onCardDelete}
               key={card._id}
             />
           ))}

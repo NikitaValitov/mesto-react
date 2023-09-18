@@ -3,7 +3,7 @@ class Api {
     this._url = config.url;
     this._headers = config.headers;
   }
-  
+
   #onResponce(res) {
     return res.ok ? res.json() : res.json().then(errData => Promise.reject(errData));
   }
@@ -42,12 +42,29 @@ class Api {
       .then(this.#onResponce)
   }
 
-  changeLike(idCard, isLiked) {
+  setLike(idCard) {
     return fetch(`${this._url}/cards/${idCard}/likes`, {
-      method: isLiked ? 'DELETE' : 'PUT',
+      method: "PUT",
       headers: this._headers,
     })
-    .then(this.#onResponce)
+      .then(this.#onResponce)
+  }
+
+  deleteLike(idCard) {
+    return fetch(`${this._url}/cards/${idCard}/likes`, {
+      method: "DELETE",
+      headers: this._headers,
+    })
+      .then(this.#onResponce)
+  }
+
+
+  changeLikeCardStatus(idCard, isLiked) {
+    if (isLiked) {
+      return this.setLike(idCard);
+    } else {
+      return this.deleteLike(idCard);
+    }
   }
 
   deleteCard(cardId) {
@@ -55,7 +72,7 @@ class Api {
       method: "DELETE",
       headers: this._headers,
     })
-    .then(this.#onResponce);
+      .then(this.#onResponce);
   }
 
   editAvatar(data) {
@@ -64,9 +81,9 @@ class Api {
       headers: this._headers,
       body: JSON.stringify(data)
     })
-    .then(this.#onResponce);
+      .then(this.#onResponce);
   }
-} 
+}
 
 const api = new Api({
   url: 'https://mesto.nomoreparties.co/v1/cohort-73',
